@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Verificar Relações de Combate de Tipos</h1>
+
+  <input type="text" [(ngModel)]="name" placeholder="Digite o tipo (ex: ghost)" (keyup.enter)="search()">
+  <button (click)="search()">Buscar</button>
+
+    <div *ngIf="typeInfo">
+    <h2 [class]="'type-' + removeAcentos(typeInfo.tipo.toLowerCase())">
+    Tipo: {{ typeInfo.tipo | uppercase }}
+    </h2>
+
+    <div>
+      <strong>Forte contra:</strong>
+      <span *ngIf="typeInfo.forteContra.length > 0">{{ typeInfo.forteContra.join(', ') }}</span>
+      <span *ngIf="typeInfo.forteContra.length === 0">Nenhum ou o tipo é de outra geração</span>
+    </div>
+
+    <div>
+      <strong>Fraco contra:</strong>
+      <span *ngIf="typeInfo.fracoContra.length > 0">{{ typeInfo.fracoContra.join(', ') }}</span>
+      <span *ngIf="typeInfo.fracoContra.length === 0">Nenhum ou o tipo é de outra geração</span>
+    </div>
+
+    <div>
+      <strong>Meio forte contra:</strong>
+      <span *ngIf="typeInfo.meioForteContra.length > 0">{{ typeInfo.meioForteContra.join(', ') }}</span>
+      <span *ngIf="typeInfo.meioForteContra.length === 0">Nenhum ou o tipo é de outra geração</span>
+    </div>
+
+    <div>
+      <strong>Meio fraco contra:</strong>
+      <span *ngIf="typeInfo.meioFracoContra.length > 0">{{ typeInfo.meioFracoContra.join(', ') }}</span>
+      <span *ngIf="typeInfo.meioFracoContra.length === 0">Nenhum ou o tipo é de outra geração</span>
+    </div>
+
+    <div>
+      <strong>Não causa dano em:</strong>
+      <span *ngIf="typeInfo.naoDanoContra.length > 0">{{ typeInfo.naoDanoContra.join(', ') }}</span>
+      <span *ngIf="typeInfo.naoDanoContra.length === 0">Nenhum ou o tipo é de outra geração</span>
+    </div>
+
+    <div>
+      <strong>Não recebe dano de:</strong>
+      <span *ngIf="typeInfo.naoDanoRecebe.length > 0">{{ typeInfo.naoDanoRecebe.join(', ') }}</span>
+      <span *ngIf="typeInfo.naoDanoRecebe.length === 0">Nenhum ou o tipo é de outra geração</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage">
+    <p style="color:red">{{ errorMessage }}</p>
+  </div>
+</div>
